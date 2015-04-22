@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: aggregator-service
+
+  cloud:
+    discovery:
+      enabled: true
+      serviceId: configuration-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+info:
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}

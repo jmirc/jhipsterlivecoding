@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Landing Page template</title>
+    <meta name="generator" content="Bootply"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-full">
+
+    <div class="row">
+
+        <div class="col-lg-12 text-center v-center">
+
+            <h1>Autocomplete Search Hotel</h1>
+
+            <p class="lead">A simple way to find hotels</p>
+
+            <br><br><br>
+
+            <form class="col-lg-12">
+                <div class="input-group" style="width:340px;text-align:center;margin:0 auto;">
+                    <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                    <input id="autocomplete" class="form-control input-lg" placeholder="Enter a name" type="text">
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- /row -->
+
+
+</div>
+<!-- /container full -->
+
+<div class="container">
+    <hr>
+
+
+    <div id="response" style="display: none">
+        <div class="row">
+            <div class="col-md-9">
+                <h2 id="name" class="lh1em">TDB</h2>
+                <p id="address" class="lh1em text-small"><i class="fa fa-map-marker"></i>TDB</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-9">
+                <h2>About the Hotel</h2>
+                <span id="description"></span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-9">
+        <br><br>
+
+        <p class="pull-right"><a href="#">EWE Tech Week Montreal - Live Coding</a> &nbsp; ©Copyright Avril 2015</p>
+        <br><br>
+    </div>
+</div>
+
+<!-- script references -->
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.7/jquery.devbridge-autocomplete.min.js"></script>
+<script>
+    $('#autocomplete').autocomplete({
+        serviceUrl: '/aggregator-service/searchByName',
+        dataType: 'json',
+        transformResult: function(response) {
+            return {
+                suggestions: $.map(response, function(dataItem) {
+                    return {
+                        data: dataItem.id,
+                        value: dataItem.name,
+                        hotel: dataItem
+                    };
+                })
+            };
+        },
+        onSelect: function (suggestion) {
+            $("#response").show();
+            $("#name").html(suggestion.hotel.name);
+
+            var address = "<i class='fa fa-map-marker'></i>";
+            address += suggestion.hotel.address;
+            address += ", " + suggestion.hotel.postalCode;
+            address += ", " + suggestion.hotel.city;
+            address += ", " + suggestion.hotel.state
+            address += ", " + suggestion.hotel.country
+
+            $("#address").html(address);
+
+            $("#description").html(suggestion.hotel.description);
+
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: configuration-service
+
+info:
+    name: Configuration Service
+    description: Configuration Service Server
+    version: ${project.version}
+
+encrypt:
+  key: thisIsMyKeyToEncrypt

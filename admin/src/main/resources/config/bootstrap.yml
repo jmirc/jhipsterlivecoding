@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: admin-service
+  cloud:
+      discovery:
+          enabled: true
+          serviceId: configuration-service
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+info:
+    name: Adminstration Service
+    description: ${project.description}
+    version: ${project.version}

@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: search-client
+
+  cloud:
+    discovery:
+      enabled: true
+      serviceId: configuration-service
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+  client:
+    serviceUrl:
+      defaultZone:
+        - http://127.0.0.1:8761/eureka/
+        - http://127.0.0.1:8762/eureka/
+
+info:
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
