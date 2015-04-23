@@ -1,0 +1,5 @@
+# Build the docker image
+mvn clean package docker:build
+
+# Run the docker image
+docker run -p 8761:8761 --rm --name registry-service-0 -t jmirc/registry-service

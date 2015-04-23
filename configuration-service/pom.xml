@@ -95,4 +95,22 @@
 		</plugins>
 	</build>
 
+    <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <LIVE_CODING_CONFIG>${project.basedir}/src/main/docker</LIVE_CODING_CONFIG>
+            </properties>
+        </profile>
+        <profile>
+            <id>docker</id>
+            <properties>
+                <LIVE_CODING_CONFIG/>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

@@ -1,6 +1,12 @@
 spring:
   application:
     name: configuration-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://${LIVE_CODING_CONFIG}/livecoding-config
+          basedir: target/config
 
 info:
     name: Configuration Service
