@@ -2,6 +2,7 @@ package com.expedia.livecoding.mtl.service.aggregator;
 
 import com.google.common.cache.Cache;
 import feign.Feign;
+import feign.auth.BasicAuthRequestInterceptor;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class AggregatorHotelService {
         return Feign.builder()
                 .encoder(new GsonEncoder())
                 .decoder(new GsonDecoder())
-                .requestInterceptor(new XAuthTokenRequestInterceptor(serviceInstance))
+                .requestInterceptor(new BasicAuthRequestInterceptor("admin", "admin"))
                 .target(AdminServiceClient.class, serviceInstance.getUri().toString());
     }
 }
