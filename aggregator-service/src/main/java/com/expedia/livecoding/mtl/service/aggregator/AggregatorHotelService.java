@@ -26,7 +26,7 @@ public class AggregatorHotelService {
 
     @Scheduled(fixedDelay = 10000)
     public void aggregate() {
-        discoveryClient.getInstances("admin-service").stream()
+        discoveryClient.getInstances("content-generator-service").stream()
                 .forEach(s -> {
 //                            System.out.println("*******************");
 //                            System.out.println(s.getHost());
