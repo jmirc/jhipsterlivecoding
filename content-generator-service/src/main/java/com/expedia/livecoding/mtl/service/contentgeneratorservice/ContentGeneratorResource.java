@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContentGeneratorResource {
 
     @HystrixCommand(groupKey = "content-generator-service")
-    @RequestMapping(value = "/",
+    @RequestMapping(value = "/hotels",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Hotel>> getAll() {
