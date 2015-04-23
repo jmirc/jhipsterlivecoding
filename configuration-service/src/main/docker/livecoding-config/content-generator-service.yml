@@ -1,0 +1,22 @@
+server:
+    port: 8080
+
+security:
+    user: 
+        name: admin
+        password: admin
+    
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    hostname: localhost
+
+---
+spring:
+  profiles: server2 #name of the profile
+server:
+  port: 8081
+eureka:
+    instance:
+      hostname: localhost2 # need to set in the hosts file
+

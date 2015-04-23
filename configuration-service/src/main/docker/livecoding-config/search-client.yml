@@ -1,0 +1,16 @@
+server:
+  port: 11000
+
+aggregator-service:
+  ribbon:
+    ServerListRefreshInterval: 1000
+    MaxAutoRetries: 5
+    MaxAutoRetriesNextServer: 5
+    OkToRetryOnAllOperations: true
+
+message: Spring Rocks! :)
+
+turbine:
+  appConfig: CONTENT-GENERATOR-SERVICE,AGGREGATOR-SERVICE,SEARCH-CLIENT
+  clusterNameExpression: new String("default")
+

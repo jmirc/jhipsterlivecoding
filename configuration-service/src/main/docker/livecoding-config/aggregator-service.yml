@@ -1,0 +1,17 @@
+server:
+    port: 9000
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    hostname: localhost
+
+---
+spring:
+  profiles: server2 #name of the profile
+server:
+  port: 9001
+eureka:
+    instance:
+      hostname: localhost2 # need to set in the hosts file
+

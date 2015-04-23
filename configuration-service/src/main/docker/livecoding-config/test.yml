@@ -1,0 +1,5 @@
+message: This message is managed by Spring Cloud Config Server
+
+password: '{cipher}2091ca6a9cd7fe4f94e7c8cccea556352e67f94a4a832d0eaaf738eb04dfe6eff0371e2f097b3faf4be558fffbfb40bc'
+
+
