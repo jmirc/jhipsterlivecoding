@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ContentGeneratorResource {
 
-    @HystrixCommand(groupKey = "content-generator-service")
-    @RequestMapping(value = "/hotels",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Hotel>> getAll() {
+    private final List<Hotel> hotels;
+
+    public ContentGeneratorResource() {
         LoremIpsum jlorem = new LoremIpsum();
 
-        final List<Hotel> hotels = IntStream.range(1, 5).mapToObj(i -> {
+        hotels = IntStream.range(1, 5).mapToObj(i -> {
             Hotel hotel = new Hotel();
             hotel.setName(jlorem.randomWord());
             hotel.setAddress(jlorem.sentence());
@@ -33,6 +31,14 @@ public class ContentGeneratorResource {
             hotel.setCountry("Canada");
             return hotel;
         }).collect(Collectors.toList());
+
+    }
+
+    @HystrixCommand(groupKey = "content-generator-service")
+    @RequestMapping(value = "/hotels",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Hotel>> getAll() {
 
         return ResponseEntity.ok(hotels);
     }
