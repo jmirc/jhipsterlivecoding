@@ -40,3 +40,6 @@ elong-import/data/hotel-*.xml
 
 # Jrebel
 rebel*.xml
+
+# Projects
+registry-service/src/main/docker/liveconding-config
