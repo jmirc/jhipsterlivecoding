@@ -24,6 +24,12 @@ public class AggregatorHotelService {
     @Value("${eureka.instance.hostname}")
     private String hostname;
 
+    @Value("${contentGeneratorServiceUsername.username}")
+    private String contentGeneratorServiceUsername;
+
+    @Value("${contentGeneratorServiceUsername.password}")
+    private String contentGeneratorServicePassword;
+
     @Scheduled(fixedDelay = 10000)
     public void aggregate() {
         discoveryClient.getInstances("content-generator-service").stream()
@@ -49,7 +55,7 @@ public class AggregatorHotelService {
         return Feign.builder()
                 .encoder(new GsonEncoder())
                 .decoder(new GsonDecoder())
-                .requestInterceptor(new BasicAuthRequestInterceptor("admin", "admin"))
+                .requestInterceptor(new BasicAuthRequestInterceptor(contentGeneratorServiceUsername, contentGeneratorServicePassword))
                 .target(AdminServiceClient.class, serviceInstance.getUri().toString());
     }
 }

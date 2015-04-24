@@ -47,7 +47,6 @@
     </dependencies>
 
     <build>
-        <finalName>registry-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -65,22 +64,6 @@
                             <artifactId>eureka-client</artifactId>
                         </dependency>
                     </requiresUnpack>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.2.6</version>
-                <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
                 </configuration>
             </plugin>
         </plugins>

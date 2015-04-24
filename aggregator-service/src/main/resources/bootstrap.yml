@@ -3,9 +3,10 @@ spring:
     name: aggregator-service
 
   cloud:
-    discovery:
-      enabled: true
-      serviceId: configuration-service
+    config:
+      discovery:
+        enabled: true
+        serviceId: configuration-service
 
 eureka:
   client:

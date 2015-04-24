@@ -3,9 +3,10 @@ spring:
     name: search-client
 
   cloud:
-    discovery:
-      enabled: true
-      serviceId: configuration-service
+    config:
+      discovery:
+        enabled: true
+        serviceId: configuration-service
 
 eureka:
   instance:
